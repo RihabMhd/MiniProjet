@@ -121,7 +121,7 @@ void TrierLivresParTitre(int ordre) {
     for (int i = 0; i < count - 1; i++) {//put the last one automatically last
         for (int j = 0; j < count - i - 1; j++) {    //this is checking each pair of books next to each other(because the last i books are already sorted)
             int cmp = strcmp(livres[j].titre, livres[j + 1].titre);
-            if ((ordre == 1 && cmp > 0) || (ordre == 0 && cmp < 0)) {//swapp id the order is incorrect
+            if ((ordre == 1 && cmp > 0) || (ordre == 0 && cmp < 0)) {//swapp if the order is incorrect
                 livre temp = livres[j];
                 livres[j] = livres[j + 1];
                 livres[j + 1] = temp;
