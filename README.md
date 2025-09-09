@@ -8,3 +8,5 @@ Update book information (quantity)
 Delete a book
 Search for a book by ID
 Check the total number of books
+Binary Search
+Bubble sort
