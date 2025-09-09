@@ -18,7 +18,7 @@ int main() {
         printf("6. Nombre de livres\n");
         // printf("8. Trier les livres par titre\n");
         // printf("9. Trier les livres par quantité\n");
-        printf("10. Trier les livres par quantité or livre\n");
+        printf("10. Trier les livres par quantité or titre\n");
         printf("0. Quitter\n");
         printf("Entrez votre choix : ");
         scanf("%d", &choix);
