@@ -1,8 +1,14 @@
 #include <stdio.h>
 #include <string.h>
 #include "myfunctions.h"
-#include <string.h>
 #define max 100
+
+#define ANSI_COLOR_RED     "\x1b[31m"
+#define ANSI_COLOR_GREEN   "\x1b[32m"
+#define ANSI_COLOR_YELLOW  "\x1b[33m"
+#define ANSI_COLOR_BLUE    "\x1b[34m"
+#define ANSI_COLOR_RESET   "\x1b[0m"
+
 
 static livre livres[max]; 
 static int count = 0;  
@@ -13,7 +19,7 @@ void AfficherLivre() {
         return;
     }
     for (int i = 0; i < count; i++) {
-        printf("isbn: %s | titre: %s | auteur: %s | prix: %d | quantite: %d\n",
+        printf(ANSI_COLOR_RED"isbn: %s | titre: %s | auteur: %s | prix: %d | quantite: %d\n"ANSI_COLOR_RESET,
                livres[i].isbn, livres[i].titre, livres[i].auteur,
                livres[i].prix, livres[i].quantite);
     }
@@ -27,9 +33,9 @@ void AjoutLivre(char isbn[], char titre[], char auteur[], int prix, int quantite
         livres[count].prix = prix;
         livres[count].quantite = quantite;
         count++;
-        printf("Livre ajouté avec succès.\n");
+        printf(ANSI_COLOR_GREEN "Livre ajoute avec succes.\n" ANSI_COLOR_RESET);
     } else {
-        printf("Erreur : base pleine.\n");
+        printf(ANSI_COLOR_RED "Erreur : base pleine.\n" ANSI_COLOR_RESET);
     }
 }
 
@@ -40,22 +46,22 @@ void SupprimerLivre(char isbn[]) {
                 livres[j] = livres[j + 1];
             }
             count--;
-            printf("Livre supprimé avec succès.\n");
+            printf(ANSI_COLOR_GREEN "Livre supprime avec succes.\n" ANSI_COLOR_RESET);
             return;
         }
     }
-    printf("Livre avec isbn %s introuvable.\n", isbn);
+    printf(ANSI_COLOR_RED"Livre avec isbn %s introuvable.\n"ANSI_COLOR_RESET, isbn);
 }
 
 void ModifierLivre(char isbn[], int newQuantite) {
     for (int i = 0; i < count; i++) {
         if (strcmp(livres[i].isbn, isbn) == 0) {
             livres[i].quantite = newQuantite;
-            printf("Quantité mise à jour avec succès.\n");
+            printf(ANSI_COLOR_GREEN "Quantite mise a jour avec succs.\n" ANSI_COLOR_RESET);
             return;
         }
     }
-    printf("Erreur : livre non trouvé.\n");
+    printf(ANSI_COLOR_RED "Erreur : livre non trouve.\n" ANSI_COLOR_RESET);
 }
 
 // void RechercherLivre(int id) {
@@ -98,7 +104,7 @@ void RechercherLivreBinaireISBN(char isbn[]) {
         int cmp = strcmp(livres[milieu].isbn, isbn);
 
         if (cmp == 0) {
-            printf("Livre trouvé : ISBN=%s | titre=%s | auteur=%s | prix=%d | quantite=%d\n",
+            printf(ANSI_COLOR_RED"Livre trouve : ISBN=%s | titre=%s | auteur=%s | prix=%d | quantite=%d\n"ANSI_COLOR_RESET,
                    livres[milieu].isbn, livres[milieu].titre,
                    livres[milieu].auteur, livres[milieu].prix,
                    livres[milieu].quantite);
@@ -171,5 +177,5 @@ void TrierLivresParQuantiteOrTitre(int ordre,char type[]){
 }
 
 void NombreLivre() {
-    printf("Nombre total de livres : %d\n", count);
+    printf(ANSI_COLOR_RED "Nombre total de livres : %d\n" ANSI_COLOR_RESET, count);
 }

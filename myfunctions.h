@@ -1,6 +1,6 @@
 #ifndef MYFUNCTIONS_H
 #define MYFUNCTIONS_H
-
+#include <string.h>
 typedef struct {
     char  isbn[20];
     char titre[50];

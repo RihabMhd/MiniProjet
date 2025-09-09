@@ -2,6 +2,15 @@
 #include "myfunctions.h"
 #include <string.h>
 
+#define ANSI_COLOR_RED     "\x1b[31m"
+#define ANSI_COLOR_GREEN   "\x1b[32m"
+#define ANSI_COLOR_YELLOW  "\x1b[33m"
+#define ANSI_COLOR_BLUE    "\x1b[34m"
+#define ANSI_COLOR_RESET   "\x1b[0m"
+
+
+
+
 int main() {
     char isbn[20];
     int prix, quantite;
@@ -9,24 +18,24 @@ int main() {
     char type[20];
     int choix;
     do {
-        printf("\n         MENU:         \n");
-        printf("1. Ajouter un livre\n");
-        printf("2. Afficher les livres\n");
-        printf("3. Supprimer un livre\n");
-        printf("4. Modifier un livre\n");
-        printf("5. Rechercher un livre\n");
-        printf("6. Nombre de livres\n");
+        printf(ANSI_COLOR_RED "\n         MENU:         \n" ANSI_COLOR_RESET);
+        printf(ANSI_COLOR_BLUE "1. Ajouter un livre\n" ANSI_COLOR_RESET);
+        printf(ANSI_COLOR_BLUE "2. Afficher les livres\n" ANSI_COLOR_RESET);
+        printf(ANSI_COLOR_BLUE "3. Supprimer un livre\n" ANSI_COLOR_RESET);
+        printf(ANSI_COLOR_BLUE "4. Modifier un livre\n" ANSI_COLOR_RESET);
+        printf(ANSI_COLOR_BLUE "5. Rechercher un livre\n" ANSI_COLOR_RESET);
+        printf(ANSI_COLOR_BLUE "6. Nombre de livres\n" ANSI_COLOR_RESET);
         // printf("8. Trier les livres par titre\n");
         // printf("9. Trier les livres par quantité\n");
-        printf("10. Trier les livres par quantité or titre\n");
-        printf("0. Quitter\n");
-        printf("Entrez votre choix : ");
+        printf(ANSI_COLOR_BLUE "10. Trier les livres par quantité or titre\n" ANSI_COLOR_RESET);
+        printf(ANSI_COLOR_YELLOW "0. Quitter\n" ANSI_COLOR_RESET);
+        printf(ANSI_COLOR_GREEN "Entrez votre choix : " ANSI_COLOR_RESET);
         scanf("%d", &choix);
 
         switch (choix) {
             case 1:
                 printf("entrez l isbn du livre : ");
-                scanf("%s", &isbn);
+                scanf("%s",isbn);
                 printf("entrez le titre du livre : ");
                 scanf("%s", titre);
                 printf("entrez l auteur du livre : ");
@@ -44,13 +53,13 @@ int main() {
 
             case 3:
                 printf("entrez l isbn du livre a supprimer : ");
-                scanf("%s", &isbn);
+                scanf("%s", isbn);
                 SupprimerLivre(isbn);
                 break;
 
             case 4:
                 printf("entrez l isbn du livre a modifier : ");
-                scanf("%s", &isbn);
+                scanf("%s", isbn);
                 printf("entrez la nouvelle quantite : ");
                 scanf("%d", &quantite);
                 ModifierLivre(isbn, quantite);
@@ -62,7 +71,6 @@ int main() {
                 printf("entrez l'ISBN du livre à rechercher : ");
                 scanf("%s", isbn);
                 RechercherLivreBinaireISBN(isbn);
-                break;
                 break;
 
             case 6:
@@ -108,7 +116,7 @@ int main() {
 
                 break;
             case 0:
-                printf("au revoir\n");
+                printf(ANSI_COLOR_YELLOW "au revoir\n" ANSI_COLOR_RESET);
                 break;
 
             default:
