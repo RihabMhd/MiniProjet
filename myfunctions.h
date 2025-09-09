@@ -18,6 +18,7 @@ void TrierLivresParISBN();
 void RechercherLivreBinaireISBN(char isbn[]);
 void TrierLivresParTitre(int ordre);
 void TrierLivresParQuantite(int ordre);
+void TrierLivresParQuantiteOrTitre(int ordre,char type[]);
 
 
 

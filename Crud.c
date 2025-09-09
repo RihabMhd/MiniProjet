@@ -117,22 +117,36 @@ void RechercherLivreBinaireISBN(char isbn[]) {
 
 
 
-void TrierLivresParTitre(int ordre) {
-    for (int i = 0; i < count - 1; i++) {//put the last one automatically last
-        for (int j = 0; j < count - i - 1; j++) {    //this is checking each pair of books next to each other(because the last i books are already sorted)
-            int cmp = strcmp(livres[j].titre, livres[j + 1].titre);
-            if ((ordre == 1 && cmp > 0) || (ordre == 0 && cmp < 0)) {//swapp if the order is incorrect
-                livre temp = livres[j];
-                livres[j] = livres[j + 1];
-                livres[j + 1] = temp;
-            }
-        }
-    }
-}
+// void TrierLivresParTitre(int ordre) {
+//     for (int i = 0; i < count - 1; i++) {//put the last one automatically last
+//         for (int j = 0; j < count - i - 1; j++) {    //this is checking each pair of books next to each other(because the last i books are already sorted)
+//             int cmp = strcmp(livres[j].titre, livres[j + 1].titre);
+//             if ((ordre == 1 && cmp > 0) || (ordre == 0 && cmp < 0)) {//swapp if the order is incorrect
+//                 livre temp = livres[j];
+//                 livres[j] = livres[j + 1];
+//                 livres[j + 1] = temp;
+//             }
+//         }
+//     }
+// }
 
 
-void TrierLivresParQuantite(int ordre) { 
-    for (int i = 0; i < count - 1; i++) {
+// void TrierLivresParQuantite(int ordre) { 
+//     for (int i = 0; i < count - 1; i++) {
+//         for (int j = 0; j < count - i - 1; j++) {
+//             if ((ordre == 1 && livres[j].quantite > livres[j + 1].quantite) ||
+//                 (ordre == 0 && livres[j].quantite < livres[j + 1].quantite)) {
+//                 livre temp = livres[j];
+//                 livres[j] = livres[j + 1];
+//                 livres[j + 1] = temp;
+//             }
+//         }
+//     }
+// }
+
+void TrierLivresParQuantiteOrTitre(int ordre,char type[]){
+    if(strcmp(type, "Quantite") == 0){
+        for (int i = 0; i < count - 1; i++) {
         for (int j = 0; j < count - i - 1; j++) {
             if ((ordre == 1 && livres[j].quantite > livres[j + 1].quantite) ||
                 (ordre == 0 && livres[j].quantite < livres[j + 1].quantite)) {
@@ -142,9 +156,19 @@ void TrierLivresParQuantite(int ordre) {
             }
         }
     }
+    }else{
+        for (int i = 0; i < count - 1; i++) {//put the last one automatically last
+        for (int j = 0; j < count - i - 1; j++) {    //this is checking each pair of books next to each other(because the last i books are already sorted)
+            int cmp = strcmp(livres[j].titre, livres[j + 1].titre);
+            if ((ordre == 1 && cmp > 0) || (ordre == 0 && cmp < 0)) {//swapp if the order is incorrect
+                livre temp = livres[j];
+                livres[j] = livres[j + 1];
+                livres[j + 1] = temp;
+            }
+        }
+    }
+    }
 }
-
-
 
 void NombreLivre() {
     printf("Nombre total de livres : %d\n", count);

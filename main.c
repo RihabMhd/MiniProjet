@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include "myfunctions.h"
-
+#include <string.h>
 
 int main() {
     char isbn[20];
     int prix, quantite;
     char titre[50], auteur[50];
+    char type[20];
     int choix;
     do {
         printf("\n         MENU:         \n");
@@ -15,8 +16,9 @@ int main() {
         printf("4. Modifier un livre\n");
         printf("5. Rechercher un livre\n");
         printf("6. Nombre de livres\n");
-        printf("8. Trier les livres par titre\n");
-        printf("9. Trier les livres par quantité\n");
+        // printf("8. Trier les livres par titre\n");
+        // printf("9. Trier les livres par quantité\n");
+        printf("10. Trier les livres par quantité or livre\n");
         printf("0. Quitter\n");
         printf("Entrez votre choix : ");
         scanf("%d", &choix);
@@ -66,20 +68,45 @@ int main() {
             case 6:
                 NombreLivre();
                 break;                
-            case 8:
-                printf("1. ordre croissant\n2. ordre décroissant\nvotre choix : ");
-                scanf("%d", &choix);
-                TrierLivresParTitre(choix == 1 ? 1 : 0);
-                AfficherLivre();
-                break;
+            // case 8:
+            //     printf("1. ordre croissant\n2. ordre décroissant\nvotre choix : ");
+            //     scanf("%d", &choix);
+            //     TrierLivresParTitre(choix == 1 ? 1 : 0);
+            //     AfficherLivre();
+            //     break;
 
-            case 9:
-                printf("1. ordre croissant\n2. ordre décroissant\nvotre choix : ");
-                scanf("%d", &choix);
-                TrierLivresParQuantite(choix == 1 ? 1 : 0);
-                AfficherLivre();
-                break;
+            // case 9:
+            //     printf("1. ordre croissant\n2. ordre décroissant\nvotre choix : ");
+            //     scanf("%d", &choix);
+            //     TrierLivresParQuantite(choix == 1 ? 1 : 0);
+            //     AfficherLivre();
+            //     break;
+            case 10: {
+                    int choixType;
+                    printf("1. Trier Par Quantite\n");
+                    printf("2. Trier Par Livre\n");
+                    printf("Votre Type : ");
+                    scanf("%d", &choixType);
+                    if (choixType == 1) {
+                        strcpy(type, "Quantite");
+                    } else if (choixType == 2) {
+                        strcpy(type, "Titre");
+                    } else {
+                        printf("Type invalide.\n");
+                        break;
+                    }
+                    printf("1. Ordre croissant\n");
+                    printf("2. Ordre décroissant\n");
+                    printf("Votre choix : ");
+                    scanf("%d", &choix);
+                    TrierLivresParQuantiteOrTitre(choix == 1 ? 1 : 0, type);
+                    AfficherLivre();
 
+                    break;
+                }
+
+
+                break;
             case 0:
                 printf("au revoir\n");
                 break;
